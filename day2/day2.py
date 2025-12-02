@@ -12,8 +12,8 @@ def simple_dupe_check(numberstring):
         return 0
 
 def complex_dupe_check(numberstring):
-    middle = int(len(numberstring)/2)
-    for i in range(1, middle+2):
+    middle = int(len(numberstring)/2)+1
+    for i in range(1, middle):
         if len(numberstring) % i == 0:
             if numberstring.count(numberstring[:i]) == len(numberstring)/i:
                 return int(numberstring)
