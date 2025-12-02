@@ -12,7 +12,14 @@ def simple_dupe_check(numberstring):
         return 0
 
 def complex_dupe_check(numberstring):
-    pass
+    middle = int(len(numberstring)/2)
+    for i in range(1, middle+2):
+        if len(numberstring) % i == 0:
+            if numberstring.count(numberstring[:i]) == len(numberstring)/i:
+                return int(numberstring)
+    else:
+        return 0
+            
 
 def part_one(data):
     invalid_total = 0
@@ -24,8 +31,21 @@ def part_one(data):
     return invalid_total
 
 def part_two(data):
-    pass
+    invalid_total = 0
+    cleanranges = [[str(y) for y in range(int(x.split("-")[0]), int(x.split("-")[1])+1 )] for x in data]
+    for i in cleanranges:
+        for j in i:
+            digit_counts = {}
+            for k in j:
+                digit_counts[k] = j.count(k)
+            if len(j) > 1 and len(digit_counts.keys()) == 1:
+                invalid_total += int(j)
+            elif all(value > 1 for value in digit_counts.values()):
+                invalid_total += complex_dupe_check(j)
+    return invalid_total
 
 if __name__ == "__main__":
     print(f"Part1 Test: {part_one(make_data(testinput))}")
     print(f"Part1: {part_one(make_data(realinput))}")
+    print(f"Part2 Test: {part_two(make_data(testinput))}")
+    print(f"Part2: {part_two(make_data(realinput))}")
