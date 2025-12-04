@@ -25,7 +25,6 @@ def process_map(data):
 def check_surroundings(coords, grid):
     rolls = []
     x,y = coords
-    # print(f"Coords = {coords}")
     rolls.append(grid[y-1][x-1])
     rolls.append(grid[y][x-1])
     rolls.append(grid[y+1][x-1])
