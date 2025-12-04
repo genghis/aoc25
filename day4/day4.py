@@ -23,16 +23,9 @@ def process_map(data):
     return newdata
 
 def check_surroundings(coords, grid):
-    rolls = []
+    surrounds = [(-1,-1), (0, -1), (1,-1), (1, 0), (1, 1), (0, 1), (-1, 1), (-1, 0)]
     x,y = coords
-    rolls.append(grid[y-1][x-1])
-    rolls.append(grid[y][x-1])
-    rolls.append(grid[y+1][x-1])
-    rolls.append(grid[y+1][x])
-    rolls.append(grid[y+1][x+1])
-    rolls.append(grid[y][x+1])
-    rolls.append(grid[y-1][x+1])
-    rolls.append(grid[y-1][x])
+    rolls = [grid[y+z[0]][x+z[1]] for z in surrounds]
     if rolls.count("@") < 4:
         return 1
     else:
