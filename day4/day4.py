@@ -52,7 +52,7 @@ def part_two(grid, accessible_rolls):
         newrow = ""
         for x,char in enumerate(row):
             if char == "@":
-                if check_surroundings((x,y), grid) == 1:
+                if check_surroundings((x,y), grid):
                     accessible_rolls += 1
                     newrow += "."
                 else:
